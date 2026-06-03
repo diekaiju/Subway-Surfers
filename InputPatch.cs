@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class InputPatch
@@ -36,6 +37,44 @@ public static class InputPatch
             if (game.running != null)
             {
                 game.running.HandleDoubleTap();
+            }
+        }
+    }
+
+    public static float GetGameDuration()
+    {
+        return Game.Instance != null ? Game.Instance.GetDuration() : 0f;
+    }
+
+    public static bool IsGamePaused()
+    {
+        return Game.Instance != null ? Game.Instance.isPaused : false;
+    }
+
+    public static void HandleDailyWordFallback(DailyWord dailyWord)
+    {
+        if (object.ReferenceEquals(dailyWord, null)) return;
+
+        PlayerInfo player = PlayerInfo.Instance;
+        if (!object.ReferenceEquals(player, null))
+        {
+            if (string.IsNullOrEmpty(player.dailyWord) || player.dailyWordExpireTime < DateTime.UtcNow)
+            {
+                var type = typeof(DailyWord);
+                
+                var wordDField = type.GetField("wordD", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (!object.ReferenceEquals(wordDField, null)) wordDField.SetValue(dailyWord, "SURF");
+
+                var expireSecondsDField = type.GetField("expireSecondsD", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (!object.ReferenceEquals(expireSecondsDField, null)) expireSecondsDField.SetValue(dailyWord, 86400);
+
+                var gmtTimeSField = type.GetField("GMTTimeS", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (!object.ReferenceEquals(gmtTimeSField, null)) gmtTimeSField.SetValue(dailyWord, DateTime.UtcNow);
+
+                var sendMethod = type.GetMethod("SendWordAndExpireTime", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (!object.ReferenceEquals(sendMethod, null)) sendMethod.Invoke(dailyWord, null);
+
+                Debug.Log("Set fallback daily word: SURF via reflection");
             }
         }
     }

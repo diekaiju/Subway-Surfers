@@ -163,6 +163,139 @@ class Program
             Console.WriteLine("Warning: AnalyzeTilt call not found.");
         }
 
+        // --- Step 3: Patch Missions and UIMissionHelper to be null-safe ---
+        MethodDefinition getGameDurationMethod = patchType.Methods.FirstOrDefault(m => m.Name == "GetGameDuration");
+        if (getGameDurationMethod == null)
+        {
+            Console.WriteLine("Error: InputPatch.GetGameDuration method not found.");
+            return;
+        }
+        MethodReference getGameDurationRef = assembly.MainModule.ImportReference(getGameDurationMethod);
+
+        MethodDefinition isGamePausedMethod = patchType.Methods.FirstOrDefault(m => m.Name == "IsGamePaused");
+        if (isGamePausedMethod == null)
+        {
+            Console.WriteLine("Error: InputPatch.IsGamePaused method not found.");
+            return;
+        }
+        MethodReference isGamePausedRef = assembly.MainModule.ImportReference(isGamePausedMethod);
+
+        // Patch Missions.GetMissionInfo()
+        TypeDefinition missionsType = assembly.MainModule.GetType("Missions");
+        if (missionsType == null)
+        {
+            Console.WriteLine("Error: Missions class not found.");
+            return;
+        }
+
+        MethodDefinition getMissionInfoMethod = missionsType.Methods.FirstOrDefault(m => m.Name == "GetMissionInfo" && m.Parameters.Count == 0);
+        if (getMissionInfoMethod == null)
+        {
+            Console.WriteLine("Error: Missions.GetMissionInfo() method not found.");
+            return;
+        }
+
+        for (int i = 0; i < getMissionInfoMethod.Body.Instructions.Count - 1; i++)
+        {
+            var inst = getMissionInfoMethod.Body.Instructions[i];
+            var next = getMissionInfoMethod.Body.Instructions[i + 1];
+            MethodReference mr1 = inst.Operand as MethodReference;
+            if (inst.OpCode == OpCodes.Call && mr1 != null && mr1.Name == "get_Instance" && mr1.DeclaringType.Name == "Game")
+            {
+                MethodReference mr2 = next.Operand as MethodReference;
+                if (next.OpCode == OpCodes.Callvirt && mr2 != null && mr2.Name == "GetDuration")
+                {
+                    inst.Operand = getGameDurationRef;
+                    next.OpCode = OpCodes.Nop;
+                    next.Operand = null;
+                    Console.WriteLine("Patched Missions.GetMissionInfo to use InputPatch.GetGameDuration.");
+                    break;
+                }
+            }
+        }
+
+        // Patch UIMissionHelper.LabelAndNumberUpdate()
+        TypeDefinition uiMissionHelperType = assembly.MainModule.GetType("UIMissionHelper");
+        if (uiMissionHelperType == null)
+        {
+            Console.WriteLine("Error: UIMissionHelper class not found.");
+            return;
+        }
+
+        MethodDefinition labelAndNumberUpdateMethod = uiMissionHelperType.Methods.FirstOrDefault(m => m.Name == "LabelAndNumberUpdate");
+        if (labelAndNumberUpdateMethod == null)
+        {
+            Console.WriteLine("Error: UIMissionHelper.LabelAndNumberUpdate method not found.");
+            return;
+        }
+
+        for (int i = 0; i < labelAndNumberUpdateMethod.Body.Instructions.Count - 1; i++)
+        {
+            var inst = labelAndNumberUpdateMethod.Body.Instructions[i];
+            var next = labelAndNumberUpdateMethod.Body.Instructions[i + 1];
+            MethodReference mr1 = inst.Operand as MethodReference;
+            if (inst.OpCode == OpCodes.Call && mr1 != null && mr1.Name == "get_Instance" && mr1.DeclaringType.Name == "Game")
+            {
+                MethodReference mr2 = next.Operand as MethodReference;
+                if (next.OpCode == OpCodes.Callvirt && mr2 != null)
+                {
+                    if (mr2.Name == "get_isPaused")
+                    {
+                        inst.Operand = isGamePausedRef;
+                        next.OpCode = OpCodes.Nop;
+                        next.Operand = null;
+                        Console.WriteLine("Patched UIMissionHelper.LabelAndNumberUpdate to use InputPatch.IsGamePaused.");
+                    }
+                    else if (mr2.Name == "GetDuration")
+                    {
+                        inst.Operand = getGameDurationRef;
+                        next.OpCode = OpCodes.Nop;
+                        next.Operand = null;
+                        Console.WriteLine("Patched UIMissionHelper.LabelAndNumberUpdate to use InputPatch.GetGameDuration.");
+                    }
+                }
+            }
+        }
+
+        // Patch DailyWord.Start() to set fallback daily word
+        MethodDefinition handleDailyWordFallbackMethod = patchType.Methods.FirstOrDefault(m => m.Name == "HandleDailyWordFallback");
+        if (handleDailyWordFallbackMethod == null)
+        {
+            Console.WriteLine("Error: InputPatch.HandleDailyWordFallback method not found.");
+            return;
+        }
+        MethodReference handleDailyWordFallbackRef = assembly.MainModule.ImportReference(handleDailyWordFallbackMethod);
+
+        TypeDefinition dailyWordType = assembly.MainModule.GetType("DailyWord");
+        if (dailyWordType == null)
+        {
+            Console.WriteLine("Error: DailyWord class not found.");
+            return;
+        }
+
+        MethodDefinition dailyWordStartMethod = dailyWordType.Methods.FirstOrDefault(m => m.Name == "Start");
+        if (dailyWordStartMethod == null)
+        {
+            Console.WriteLine("Error: DailyWord.Start method not found.");
+            return;
+        }
+
+        ILProcessor dailyWordIl = dailyWordStartMethod.Body.GetILProcessor();
+        Instruction retInst = dailyWordStartMethod.Body.Instructions.FirstOrDefault(inst => inst.OpCode == OpCodes.Ret);
+        if (retInst != null)
+        {
+            Instruction ldarg0dw = dailyWordIl.Create(OpCodes.Ldarg_0);
+            Instruction callFallback = dailyWordIl.Create(OpCodes.Call, handleDailyWordFallbackRef);
+            
+            dailyWordIl.InsertBefore(retInst, ldarg0dw);
+            dailyWordIl.InsertBefore(retInst, callFallback);
+            Console.WriteLine("Patched DailyWord.Start to use InputPatch.HandleDailyWordFallback.");
+        }
+        else
+        {
+            Console.WriteLine("Error: Ret instruction not found in DailyWord.Start.");
+        }
+
         Console.WriteLine("Saving modified assembly...");
         assembly.Write();
         
