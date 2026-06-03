@@ -1,0 +1,20 @@
+# Game Binaries and Assets
+Subway Surfers.exe
+Subway Surfers_Data/
+Unlock All Characters/
+Keyboard_controls.exe
+cecil/
+READ ME.txt
+
+# Temp and Compiled Binaries
+*.exe
+*.dll
+*.pdb
+
+# Local settings and developer logs
+.gemini/
+*.log
+activity_log.md
+all_utf16_strings.txt
+double_tap_il.txt
+inspect_settings.py
