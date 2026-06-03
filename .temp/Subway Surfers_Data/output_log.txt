@@ -239,3 +239,7 @@ playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway S
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
+Is low res, no atlas change
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
