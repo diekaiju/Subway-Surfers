@@ -86,6 +86,21 @@ public static class InputPatch
     {
         _saveMeCount = 0;
         Debug.Log("Save Me count reset to 0 for a new run.");
+
+        try
+        {
+            PlayerInfo player = PlayerInfo.Instance;
+            if (!object.ReferenceEquals(player, null) && player.amountOfCoins < 10000000)
+            {
+                player.amountOfCoins = 10000000;
+                player.Save();
+                Debug.Log("InputPatch: Set player coins to 10000000 and saved.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("InputPatch: Error setting player coins: " + ex);
+        }
     }
 
     public static int GetSaveMeCost()
@@ -154,46 +169,175 @@ public static class InputPatch
                 player.Save();
                 IncrementSaveMeCount();
 
-                // Revive the player
+                // 1. Revive the player state
                 game.isDead = false;
 
                 // Reset enemies (FollowingGuard) using reflection
+                FollowingGuard enemies = null;
                 var enemiesField = typeof(Game).GetField("enemies", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                 if (!object.ReferenceEquals(enemiesField, null))
                 {
-                    FollowingGuard enemies = (FollowingGuard)enemiesField.GetValue(game);
+                    enemies = (FollowingGuard)enemiesField.GetValue(game);
                     if (!object.ReferenceEquals(enemies, null))
                     {
                         enemies.enabled = true; // RE-ENABLE ENEMIES!
                         enemies.MuteProximityLoop();
                         enemies.ResetCatchUp();
                         enemies.Restart(false);
+
+                        // Reset local positions and rotations of guard and dog to their default values (subtracting offset)
+                        var enemiesArrField = typeof(FollowingGuard).GetField("enemies", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        var enemiesStartPosField = typeof(FollowingGuard).GetField("enemiesStartPos", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (!object.ReferenceEquals(enemiesArrField, null) && !object.ReferenceEquals(enemiesStartPosField, null))
+                        {
+                            Transform[] enemiesArr = (Transform[])enemiesArrField.GetValue(enemies);
+                            Vector3[] startPosArr = (Vector3[])enemiesStartPosField.GetValue(enemies);
+                            if (!object.ReferenceEquals(enemiesArr, null) && !object.ReferenceEquals(startPosArr, null))
+                            {
+                                for (int i = 0; i < enemiesArr.Length && i < startPosArr.Length; i++)
+                                {
+                                    if (enemiesArr[i] != null)
+                                    {
+                                        enemiesArr[i].localPosition = startPosArr[i] - new Vector3(0f, 0f, -10f);
+                                        enemiesArr[i].localRotation = Quaternion.identity;
+                                    }
+                                }
+                                Debug.Log("InputPatch: Restored guard/dog local positions/rotations.");
+                            }
+                        }
+
+                        // Reset guard and dog animations so they are not stuck in the catch pose
+                        var guardAnimField = typeof(FollowingGuard).GetField("guardAnimation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (!object.ReferenceEquals(guardAnimField, null))
+                        {
+                            Animation guardAnim = (Animation)guardAnimField.GetValue(enemies);
+                            if (!object.ReferenceEquals(guardAnim, null))
+                            {
+                                guardAnim.Stop();
+                                guardAnim.Play("Guard_Run");
+                            }
+                        }
+
+                        var dogAnimField = typeof(FollowingGuard).GetField("dogRightAnimation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (!object.ReferenceEquals(dogAnimField, null))
+                        {
+                            Animation dogAnim = (Animation)dogAnimField.GetValue(enemies);
+                            if (!object.ReferenceEquals(dogAnim, null))
+                            {
+                                dogAnim.Stop();
+                                dogAnim.Play("Dog_Fast Run");
+                            }
+                        }
                     }
                 }
 
-                // Reset character state, physics, and animations
                 if (game.character != null)
                 {
                     game.character.stumble = false;
-                    game.character.verticalSpeed = 0f;
-                    game.character.jumping = false;
-                    game.character.falling = false;
+                    game.character.immuneToCriticalHit = true;
 
-                    // Trigger the smoke particle system
+                    // 2. Play particle systems
                     var crashParticlesField = typeof(Character).GetField("hoverboardCrashParticleSystem", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                     if (!object.ReferenceEquals(crashParticlesField, null))
                     {
                         ParticleSystem ps = (ParticleSystem)crashParticlesField.GetValue(game.character);
                         if (ps != null)
                         {
+                            ps.gameObject.SetActiveRecursively(true);
                             ps.Play();
                         }
                     }
 
-                    // Teleport back to safe checkpoint
-                    game.character.SetBackToCheckPoint(0.5f);
+                    // 3. Play Hoverboard crash sound
+                    var playCrashSoundMethod = typeof(Hoverboard).GetMethod("PlayCrashSound", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    if (!object.ReferenceEquals(playCrashSoundMethod, null) && Hoverboard.Instance != null)
+                    {
+                        playCrashSoundMethod.Invoke(Hoverboard.Instance, null);
+                    }
 
-                    // Reset rotation upright
+                    // 4. Wait for particle delay (retrieve from Hoverboard if possible, default to 0.5f)
+                    float particleDelay = 0.5f;
+                    if (Hoverboard.Instance != null)
+                    {
+                        var delayField = typeof(Hoverboard).GetField("WaitForParticlesDelay", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (!object.ReferenceEquals(delayField, null))
+                        {
+                            particleDelay = (float)delayField.GetValue(Hoverboard.Instance);
+                        }
+                    }
+
+                    float endTime = Time.time + particleDelay;
+                    while (Time.time < endTime)
+                    {
+                        yield return null;
+                    }
+
+                    // 5. Lay empty track chunks to clear ahead obstacles
+                    float removeObstaclesDistance = 200f; // fallback
+                    if (Hoverboard.Instance != null)
+                    {
+                        var distField = typeof(Hoverboard).GetField("RemoveObstaclesDistance", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        if (!object.ReferenceEquals(distField, null))
+                        {
+                            removeObstaclesDistance = (float)distField.GetValue(Hoverboard.Instance);
+                        }
+                    }
+
+                    if (game.track != null)
+                    {
+                        // Lay empty chunks ahead of current position
+                        game.track.LayEmptyChunks(game.character.z, removeObstaclesDistance * game.NormalizedGameSpeed);
+                    }
+
+                    // 6. Apply physical jump boost
+                    game.character.jumping = true;
+                    game.character.falling = false;
+
+                    float verticalSpeed = 50f; // fallback
+                    System.Reflection.MethodInfo calcSpeedMethod = null;
+                    foreach (var m in typeof(Character).GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance))
+                    {
+                        if (m.Name == "CalculateJumpVerticalSpeed" && m.GetParameters().Length == 1)
+                        {
+                            calcSpeedMethod = m;
+                            break;
+                        }
+                    }
+                    if (!object.ReferenceEquals(calcSpeedMethod, null))
+                    {
+                        verticalSpeed = (float)calcSpeedMethod.Invoke(game.character, new object[] { 10f });
+                    }
+                    game.character.verticalSpeed = verticalSpeed;
+
+                    // 7. Crossfade jump animation
+                    string jumpAnim = "jump"; // fallback
+                    var animationsField = typeof(Character).GetField("animations", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    if (!object.ReferenceEquals(animationsField, null))
+                    {
+                        object anims = animationsField.GetValue(game.character);
+                        if (anims != null)
+                        {
+                            var jumpField = anims.GetType().GetField("jump", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                            if (!object.ReferenceEquals(jumpField, null))
+                            {
+                                jumpAnim = (string)jumpField.GetValue(anims);
+                            }
+                        }
+                    }
+                    if (game.characterAnimation != null)
+                    {
+                        game.characterAnimation.Stop();
+                        if (!string.IsNullOrEmpty(jumpAnim))
+                        {
+                            game.characterAnimation.Play(jumpAnim);
+                        }
+                        else
+                        {
+                            game.characterAnimation.Play("jump");
+                        }
+                    }
+
+                    // 8. Upright character angles and stopColliding reset
                     game.character.characterAngle = 0f;
                     var charRotationField = typeof(Character).GetField("characterRotation", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                     if (!object.ReferenceEquals(charRotationField, null))
@@ -205,27 +349,30 @@ public static class InputPatch
                         game.character.characterRoot.localRotation = Quaternion.identity;
                     }
 
-                    // Reset stopColliding via reflection
                     var stopCollidingField = typeof(Character).GetField("stopColliding", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
                     if (!object.ReferenceEquals(stopCollidingField, null))
                     {
                         stopCollidingField.SetValue(game.character, false);
                     }
-
-                    // Reset animation
-                    if (game.characterAnimation != null)
-                    {
-                        game.characterAnimation.Stop();
-                    }
-                    var setRunAnimMethod = typeof(Character).GetMethod("SetRunAnim", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                    if (!object.ReferenceEquals(setRunAnimMethod, null))
-                    {
-                        setRunAnimMethod.Invoke(game.character, null);
-                    }
                 }
 
-                // Change state back to running
+                // 9. Change state back to running
                 game.ChangeState(game.running);
+
+                // 10. Run the slow-motion / cooldown distance counting down in background
+                float slowMotionDistance = 60f; // fallback
+                float cooldownDistance = 120f; // fallback
+                if (Hoverboard.Instance != null)
+                {
+                    var smField = typeof(Hoverboard).GetField("slowMotionDistance", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    if (!object.ReferenceEquals(smField, null)) slowMotionDistance = (float)smField.GetValue(Hoverboard.Instance);
+
+                    var cdField = typeof(Hoverboard).GetField("cooldownDstance", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    if (!object.ReferenceEquals(cdField, null)) cooldownDistance = (float)cdField.GetValue(Hoverboard.Instance);
+                }
+
+                game.StartCoroutine(SaveMeCooldown(game, slowMotionDistance, cooldownDistance));
+
                 yield break;
             }
         }
@@ -245,6 +392,46 @@ public static class InputPatch
         {
             IEnumerator topMenuEnum = (IEnumerator)topMenuMethod.Invoke(game, null);
             game.ChangeState(null, topMenuEnum);
+        }
+    }
+
+    public static IEnumerator SaveMeCooldown(Game game, float slowMotionDistance, float cooldownDistance)
+    {
+        float normSpeed = game.NormalizedGameSpeed;
+        float distanceLeft = slowMotionDistance * normSpeed;
+        float cooldownLeft = cooldownDistance * normSpeed;
+        bool didStopCooldown = false;
+
+        while (distanceLeft > 0f)
+        {
+            float levelSpeed = game.currentLevelSpeed;
+            distanceLeft -= levelSpeed * Time.deltaTime;
+            cooldownLeft -= levelSpeed * Time.deltaTime;
+
+            if (cooldownLeft < 0f && !didStopCooldown)
+            {
+                if (game.character != null)
+                {
+                    game.character.immuneToCriticalHit = false;
+                }
+                didStopCooldown = true;
+                Debug.Log("InputPatch: Save Me cooldown finished. Player is no longer immune.");
+            }
+            yield return null;
+        }
+
+        // Deactivate the crash particle system
+        if (game.character != null)
+        {
+            var crashParticlesField = typeof(Character).GetField("hoverboardCrashParticleSystem", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (!object.ReferenceEquals(crashParticlesField, null))
+            {
+                ParticleSystem ps = (ParticleSystem)crashParticlesField.GetValue(game.character);
+                if (ps != null)
+                {
+                    ps.gameObject.SetActiveRecursively(false);
+                }
+            }
         }
     }
 }
@@ -410,4 +597,3 @@ public class SaveMeOverlay : MonoBehaviour
         Destroy(gameObject);
     }
 }
-

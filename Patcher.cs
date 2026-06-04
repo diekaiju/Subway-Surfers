@@ -188,6 +188,7 @@ class Program
             return;
         }
 
+
         MethodDefinition getMissionInfoMethod = missionsType.Methods.FirstOrDefault(m => m.Name == "GetMissionInfo" && m.Parameters.Count == 0);
         if (getMissionInfoMethod == null)
         {
@@ -343,6 +344,8 @@ class Program
         Instruction firstsnr = startNewRunMethod.Body.Instructions[0];
         snrIl.InsertBefore(firstsnr, snrIl.Create(OpCodes.Call, resetSaveMeRef));
         Console.WriteLine("Patched Game.StartNewRun to call InputPatch.ResetSaveMeCount.");
+
+
 
         Console.WriteLine("Saving modified assembly...");
         assembly.Write();
