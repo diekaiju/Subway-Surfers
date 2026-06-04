@@ -1,0 +1,16 @@
+#!/bin/bash
+HERE="$(dirname "$(readlink -f "${0}")")"
+
+# Execute using host Wine environment
+if command -v wine &> /dev/null; then
+    WINE_BIN="wine"
+else
+    # Try common wine paths or notify the user
+    echo "--------------------------------------------------------"
+    echo "Error: Wine is required to run Subway Surfers AppImage."
+    echo "Please install Wine via your distribution's package manager."
+    echo "--------------------------------------------------------"
+    exit 1
+fi
+
+$WINE_BIN "$HERE/usr/share/subwaysurfers/Subway Surfers.exe"

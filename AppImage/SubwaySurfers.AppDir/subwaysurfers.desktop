@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Subway Surfers (Native Controls)
+Comment=Play Subway Surfers on Linux with keyboard controls.
+Exec=AppRun
+Icon=subwaysurfers
+Categories=Game;ArcadeGame;
+Terminal=false
