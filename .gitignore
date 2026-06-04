@@ -1,0 +1,4 @@
+# AppImage build directories and artifacts
+AppImage/SubwaySurfers.AppDir/
+AppImage/*.AppImage
+AppImage/*.tar.xz
