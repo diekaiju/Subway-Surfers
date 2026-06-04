@@ -51,12 +51,40 @@ Use these keys to navigate through the game:
 3. **Exit Hook**: When done playing, make sure to exit the controls helper icon from your system tray or press `Ctrl + Shift + E`.
 
 ### 🐧 Linux
-You can build or distribute this game as a native standalone Linux **AppImage**:
+This is a patched Windows version of Subway Surfers. To run it on Linux, you must have Wine installed, including 32-bit library support (since the game is a 32-bit Windows application).
+
+#### Prerequisites: Wine 32-bit Setup
+Select the commands for your Linux distribution to set up Wine and its 32-bit dependencies:
+
+* **Ubuntu / Debian / Linux Mint:**
+  ```bash
+  sudo dpkg --add-architecture i386
+  sudo apt update
+  sudo apt install wine wine32
+  ```
+
+* **Fedora:**
+  ```bash
+  sudo dnf install wine wine.i686
+  ```
+
+* **Arch Linux:**
+  1. Open `/etc/pacman.conf` in a text editor with root privileges.
+  2. Uncomment the `[multilib]` section:
+     ```ini
+     [multilib]
+     Include = /etc/pacman.d/mirrorlist
+     ```
+  3. Update your system database and install Wine:
+     ```bash
+     sudo pacman -Syu wine
+     ```
 
 #### Running the game using AppImage:
 If you have a compiled `.AppImage` bundle:
-1. Right-click the `.AppImage` file -> **Properties** -> **Permissions** -> Check **Allow executing file as program** (or run `chmod +x SubwaySurfers-x86_64.AppImage`).
-2. Double-click the AppImage to launch the game natively on your Linux desktop.
+1. Make sure Wine 32-bit is installed using the instructions above.
+2. Right-click the `.AppImage` file -> **Properties** -> **Permissions** -> Check **Allow executing file as program** (or run `chmod +x SubwaySurfers-x86_64.AppImage`).
+3. Double-click the AppImage to launch the game natively on your Linux desktop.
 
 #### Packaging the AppImage from source:
 1. Navigate to the `AppImage` directory:

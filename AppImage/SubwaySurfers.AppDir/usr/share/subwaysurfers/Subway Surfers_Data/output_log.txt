@@ -16,7 +16,7 @@ Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.
 Loading C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.130 seconds
+- Completed reload, in  0.030 seconds
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\System.dll (this message is harmless)
 Multiple visibility culling animations in the same hierarchy, animation culling for animation component in pow will be turned off.
@@ -165,60 +165,28 @@ Multiple visibility culling animations in the same hierarchy, animation culling 
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 30081. Operation took 22.007400 ms.
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 30081. Operation took 18.143600 ms.
 playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\InputPatch.dll (this message is harmless)
-Merge Level Loaded 17
+Merge Level Loaded 15
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-CurrentPlayer: -1
+Chunks Level Loaded 23
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-Inserted local player: 4608
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-Save Me count reset to 0 for a new run.
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-Chunks Level Loaded 20
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-EntryPointNotFoundException: bridge_initAdColony
-  at (wrapper managed-to-native) AdColony:bridge_initAdColony (string,string)
-  at AdColony.Init (System.String appId, System.String zoneId) [0x00000] in <filename unknown>:0 
-  at UpgradeScreenSetup.Start () [0x00000] in <filename unknown>:0 
+EntryPointNotFoundException: utilityGetBundleVersion
+  at (wrapper managed-to-native) DeviceUtility:utilityGetBundleVersion ()
+  at DeviceUtility.GetBundleVersion () [0x00000] in <filename unknown>:0 
+  at UIVersionLabel.Start () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
-Save Me count reset to 0 for a new run.
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-www.error: couldn't connect to host
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-www.error: couldn't connect to host
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-www.error: couldn't connect to host
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-InputPatch: Intercepted DieSequence.
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-InputPatch: Proceeding to GameOver.
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
@@ -226,7 +194,15 @@ playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway S
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-Save Me count reset to 0 for a new run.
+www.error: couldn't connect to host
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
@@ -238,7 +214,19 @@ Inserted local player: 4608
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
+Save Me count reset to 0 for a new run.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+www.error: couldn't connect to host
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
 InputPatch: Intercepted DieSequence.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 

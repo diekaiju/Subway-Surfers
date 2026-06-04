@@ -24,18 +24,29 @@ cat << 'EOF' > "$BUILD_DIR/AppRun"
 HERE="$(dirname "$(readlink -f "${0}")")"
 
 # Execute using host Wine environment
-if command -v wine &> /dev/null; then
-    WINE_BIN="wine"
-else
-    # Try common wine paths or notify the user
-    echo "--------------------------------------------------------"
-    echo "Error: Wine is required to run Subway Surfers AppImage."
-    echo "Please install Wine via your distribution's package manager."
-    echo "--------------------------------------------------------"
+if ! command -v wine &> /dev/null; then
+    echo "========================================================"
+    echo "ERROR: Wine is required to run Subway Surfers AppImage."
+    echo "This is a 32-bit Windows application and needs wine32."
+    echo "========================================================"
+    echo ""
+    echo "How to install Wine on popular distributions:"
+    echo "  Ubuntu/Debian/Mint:"
+    echo "    sudo dpkg --add-architecture i386"
+    echo "    sudo apt update"
+    echo "    sudo apt install wine wine32"
+    echo ""
+    echo "  Fedora:"
+    echo "    sudo dnf install wine wine.i686"
+    echo ""
+    echo "  Arch Linux:"
+    echo "    (Enable multilib in /etc/pacman.conf first)"
+    echo "    sudo pacman -Syu wine"
+    echo ""
     exit 1
 fi
 
-$WINE_BIN "$HERE/usr/share/subwaysurfers/Subway Surfers.exe"
+wine "$HERE/usr/share/subwaysurfers/Subway Surfers.exe"
 EOF
 chmod +x "$BUILD_DIR/AppRun"
 
