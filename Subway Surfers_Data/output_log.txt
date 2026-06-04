@@ -16,7 +16,7 @@ Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.
 Loading C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.030 seconds
+- Completed reload, in  0.112 seconds
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\System.dll (this message is harmless)
 Multiple visibility culling animations in the same hierarchy, animation culling for animation component in pow will be turned off.
@@ -165,21 +165,13 @@ Multiple visibility culling animations in the same hierarchy, animation culling 
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 30081. Operation took 18.569900 ms.
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 30081. Operation took 31.160301 ms.
 playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
 Platform assembly: C:\Users\siddi\Desktop\coding\Subway Surfers By syncwithtech.org\Subway Surfers_Data\Managed\InputPatch.dll (this message is harmless)
-playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-Set fallback daily word: SURF via reflection
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-Merge Level Loaded 15
+Merge Level Loaded 18
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
@@ -187,39 +179,31 @@ CurrentPlayer: -1
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-Inserted local player: 1324
+Inserted local player: 4608
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-Chunks Level Loaded 18
+Save Me count reset to 0 for a new run.
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-www.error: couldn't connect to host
+Chunks Level Loaded 22
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-www.error: couldn't connect to host
+InputPatch: Intercepted DieSequence.
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-www.error: couldn't connect to host
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-Collect 500 coins
- 
-(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-Mission Set Completed, increase multiplier
+InputPatch: Proceeding to GameOver.
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
 playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Save Me count reset to 0 for a new run.
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
@@ -227,11 +211,271 @@ CurrentPlayer: -1
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
-playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+Inserted local player: 4608
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+www.error: couldn't connect to host
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Intercepted DieSequence.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Proceeding to GameOver.
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 
 playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Save Me count reset to 0 for a new run.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+CurrentPlayer: -1
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Inserted local player: 4608
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Pick up 2 Sneakers
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Intercepted DieSequence.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Proceeding to GameOver.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Save Me count reset to 0 for a new run.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+CurrentPlayer: -1
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Inserted local player: 4608
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Intercepted DieSequence.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Player chose Save Me. Reviving...
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+playerdata save data path: "C:/Users/siddi/AppData/LocalLow/Kiloo Games/Subway Surf/playerdata"
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Save Me count incremented to: 1
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+No checkpoints in track
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Intercepted DieSequence.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Character y-position has been clamped to avoid fallthrough.
+ 
+(Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+InputPatch: Proceeding to GameOver.
  
 (Filename: C:/BuildAgent/work/14194e8ce88cdf47/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
 

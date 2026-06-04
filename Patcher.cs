@@ -296,6 +296,54 @@ class Program
             Console.WriteLine("Error: Ret instruction not found in DailyWord.Start.");
         }
 
+        // --- Step 4: Patch Game.DieSequence to call InputPatch.DieSequence ---
+        MethodDefinition dieSequenceMethod = gameType.Methods.FirstOrDefault(m => m.Name == "DieSequence");
+        if (dieSequenceMethod == null)
+        {
+            Console.WriteLine("Error: Game.DieSequence method not found.");
+            return;
+        }
+
+        MethodDefinition patchDieSequence = patchType.Methods.FirstOrDefault(m => m.Name == "DieSequence");
+        if (patchDieSequence == null)
+        {
+            Console.WriteLine("Error: InputPatch.DieSequence method not found.");
+            return;
+        }
+
+        MethodReference patchDieSequenceRef = assembly.MainModule.ImportReference(patchDieSequence);
+
+        ILProcessor dsIl = dieSequenceMethod.Body.GetILProcessor();
+        dieSequenceMethod.Body.Instructions.Clear();
+        dieSequenceMethod.Body.Variables.Clear();
+
+        dsIl.Append(dsIl.Create(OpCodes.Ldarg_0));
+        dsIl.Append(dsIl.Create(OpCodes.Call, patchDieSequenceRef));
+        dsIl.Append(dsIl.Create(OpCodes.Ret));
+        Console.WriteLine("Patched Game.DieSequence to redirect to InputPatch.DieSequence.");
+
+        // --- Step 5: Patch Game.StartNewRun to call InputPatch.ResetSaveMeCount ---
+        MethodDefinition startNewRunMethod = gameType.Methods.FirstOrDefault(m => m.Name == "StartNewRun");
+        if (startNewRunMethod == null)
+        {
+            Console.WriteLine("Error: Game.StartNewRun method not found.");
+            return;
+        }
+
+        MethodDefinition resetSaveMeMethod = patchType.Methods.FirstOrDefault(m => m.Name == "ResetSaveMeCount");
+        if (resetSaveMeMethod == null)
+        {
+            Console.WriteLine("Error: InputPatch.ResetSaveMeCount method not found.");
+            return;
+        }
+
+        MethodReference resetSaveMeRef = assembly.MainModule.ImportReference(resetSaveMeMethod);
+
+        ILProcessor snrIl = startNewRunMethod.Body.GetILProcessor();
+        Instruction firstsnr = startNewRunMethod.Body.Instructions[0];
+        snrIl.InsertBefore(firstsnr, snrIl.Create(OpCodes.Call, resetSaveMeRef));
+        Console.WriteLine("Patched Game.StartNewRun to call InputPatch.ResetSaveMeCount.");
+
         Console.WriteLine("Saving modified assembly...");
         assembly.Write();
         
