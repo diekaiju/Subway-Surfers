@@ -133,4 +133,7 @@ Contributions are what make the open-source community an amazing place to learn,
 All feedback, bug reports, and pull requests are highly appreciated!
 
 ## Buy me a coffee
-if you want to Buy me a coffee : [buymeacoffee](https://tinyurl.com/utbunyw8)
+
+If you want to support the developer:
+
+ [![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/diekaiju)
