@@ -60,27 +60,37 @@ echo "🖥️ Creating Desktop Entry..."
 cat << EOF > "$BUILD_DIR/subwaysurfers.desktop"
 [Desktop Entry]
 Type=Application
-Name=Subway Surfers (Native Controls)
-Comment=Play Subway Surfers on Linux with keyboard controls.
+Name=Subway Surfers
+GenericName=Arcade Endless Runner
+Comment=Play Subway Surfers on Linux with native keyboard controls.
 Exec=AppRun
 Icon=subwaysurfers
 Categories=Game;ArcadeGame;
 Terminal=false
+StartupNotify=true
 EOF
 
-# Copy Icon (using a default icon placeholder or actual image if provided)
+# Copy Icon
 echo "🎨 Setting up icon..."
-# If an icon doesn't exist, we generate a basic one or use a placeholder
-if [ -f "../Subway Surfers_Data/ScreenSelector.bmp" ]; then
+mkdir -p "$BUILD_DIR/usr/share/icons/hicolor/256x256/apps"
+if [ -f "subwaysurfers.png" ]; then
+    cp "subwaysurfers.png" "$BUILD_DIR/subwaysurfers.png"
+    cp "subwaysurfers.png" "$BUILD_DIR/usr/share/icons/hicolor/256x256/apps/subwaysurfers.png"
+    cp "subwaysurfers.png" "$BUILD_DIR/.DirIcon"
+elif [ -f "../Subway Surfers_Data/ScreenSelector.bmp" ]; then
     cp "../Subway Surfers_Data/ScreenSelector.bmp" "$BUILD_DIR/subwaysurfers.bmp"
-    # Touch png to prevent appimagetool warning
-    touch "$BUILD_DIR/subwaysurfers.png"
-else
-    touch "$BUILD_DIR/subwaysurfers.png"
+fi
+
+# Copy AppStream metadata
+echo "📄 Setting up AppStream metadata..."
+mkdir -p "$BUILD_DIR/usr/share/metainfo"
+if [ -f "subwaysurfers.appdata.xml" ]; then
+    cp "subwaysurfers.appdata.xml" "$BUILD_DIR/usr/share/metainfo/subwaysurfers.appdata.xml"
+    cp "subwaysurfers.appdata.xml" "$BUILD_DIR/subwaysurfers.appdata.xml"
 fi
 
 echo "=================================================="
 echo "✅ Build prep complete! AppDir structured at: $BUILD_DIR"
 echo "To package into a single .AppImage file, run:"
-echo "  ARCH=x86_64 appimagetool $BUILD_DIR"
+echo "  ARCH=x86_64 ./appimagetool $BUILD_DIR SubwaySurfers-x86_64.AppImage"
 echo "=================================================="

@@ -86,21 +86,6 @@ public static class InputPatch
     {
         _saveMeCount = 0;
         Debug.Log("Save Me count reset to 0 for a new run.");
-
-        try
-        {
-            PlayerInfo player = PlayerInfo.Instance;
-            if (!object.ReferenceEquals(player, null) && player.amountOfCoins < 10000000)
-            {
-                player.amountOfCoins = 10000000;
-                player.Save();
-                Debug.Log("InputPatch: Set player coins to 10000000 and saved.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError("InputPatch: Error setting player coins: " + ex);
-        }
     }
 
     public static int GetSaveMeCost()

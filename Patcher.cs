@@ -163,6 +163,33 @@ class Program
             Console.WriteLine("Warning: AnalyzeTilt call not found.");
         }
 
+        // --- Step 2b: Disable Sensors.Accelerometer.raw in Game.Update() ---
+        MethodDefinition gameUpdateMethod = gameType.Methods.FirstOrDefault(m => m.Name == "Update");
+        if (gameUpdateMethod != null)
+        {
+            foreach (var inst in gameUpdateMethod.Body.Instructions)
+            {
+                MethodReference mr = inst.Operand as MethodReference;
+                if (inst.OpCode == OpCodes.Call && mr != null && mr.Name == "raw" && mr.DeclaringType.Name.Contains("Accelerometer"))
+                {
+                    Instruction prev1 = inst.Previous;
+                    Instruction prev2 = prev1 != null ? prev1.Previous : null;
+
+                    inst.OpCode = OpCodes.Nop;
+                    inst.Operand = null;
+                    if (prev1 != null) { prev1.OpCode = OpCodes.Nop; prev1.Operand = null; }
+                    if (prev2 != null) { prev2.OpCode = OpCodes.Nop; prev2.Operand = null; }
+
+                    Console.WriteLine("Disabled Sensors.Accelerometer.raw call in Game.Update.");
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("Warning: Game.Update method not found.");
+        }
+
         // --- Step 3: Patch Missions and UIMissionHelper to be null-safe ---
         MethodDefinition getGameDurationMethod = patchType.Methods.FirstOrDefault(m => m.Name == "GetGameDuration");
         if (getGameDurationMethod == null)

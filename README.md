@@ -93,12 +93,12 @@ If you have a compiled `.AppImage` bundle:
    ```
 2. Make `build-appimage.sh` executable and run it to prepare the build structure:
    ```bash
-   chmod +x build-appimage.sh
+   chmod +x appimagetool build-appimage.sh
    ./build-appimage.sh
    ```
 3. Use the standard Linux `appimagetool` to bundle it:
    ```bash
-   appimagetool SubwaySurfers.AppDir
+   ARCH=x86_64 ./appimagetool SubwaySurfers.AppDir SubwaySurfers-x86_64.AppImage
    ```
 
 ---
