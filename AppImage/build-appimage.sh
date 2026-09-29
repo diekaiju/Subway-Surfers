@@ -46,6 +46,7 @@ export PATH="$HERE/usr/bin:$PATH"
 export LD_LIBRARY_PATH="$HERE/usr/lib:$HERE/usr/lib/wine:$LD_LIBRARY_PATH"
 export WINEPREFIX="$HOME/.local/share/subwaysurfers/wineprefix"
 export WINEDEBUG=-all
+export WINEDLLOVERRIDES="mscoree,mshtml="
 
 # Ensure the prefix directory exists
 mkdir -p "$WINEPREFIX"

@@ -2,3 +2,4 @@
 AppImage/SubwaySurfers.AppDir/
 AppImage/*.AppImage
 AppImage/*.tar.xz
+*.zip
