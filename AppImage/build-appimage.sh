@@ -91,6 +91,13 @@ fi
 
 echo "=================================================="
 echo "✅ Build prep complete! AppDir structured at: $BUILD_DIR"
-echo "To package into a single .AppImage file, run:"
-echo "  ARCH=x86_64 ./appimagetool $BUILD_DIR SubwaySurfers-x86_64.AppImage"
+echo "📦 Creating AppImage bundle..."
+if [ -f "./appimagetool" ]; then
+    chmod +x ./appimagetool
+    ARCH=x86_64 ./appimagetool -n "$BUILD_DIR" SubwaySurfers-x86_64.AppImage
+    echo "🎉 Packaging complete: SubwaySurfers-x86_64.AppImage"
+else
+    echo "To package into a single .AppImage file, run:"
+    echo "  ARCH=x86_64 ./appimagetool -n $BUILD_DIR SubwaySurfers-x86_64.AppImage"
+fi
 echo "=================================================="
