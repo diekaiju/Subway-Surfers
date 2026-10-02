@@ -3,6 +3,8 @@
 Welcome! This repository hosts a native controls patcher for the PC version of Subway Surfers. It injects keyboard input handling, restores missions, ensures null-safe daily words, and patches run sequences directly into the game's assembly using `Mono.Cecil`.
 
 ---
+[![downloads](https://img.shields.io/github/downloads/diekaiju/Subway-Surfers/total?logo=github&label=GitHub%20Downloads)](https://github.com/diekaiju/Subway-Surfers/releases)
+
 
 ## 🎨 Project Vibe & Scope
 
